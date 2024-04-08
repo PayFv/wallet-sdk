@@ -8,4 +8,5 @@ export * as txHelpers from "./tx-helpers";
 export * from "./types";
 export * as utils from "./utils";
 export * as wallet from "./wallet";
+export * as network from "./network";
 export * as rune from "./runes";
