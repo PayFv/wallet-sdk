@@ -30,14 +30,17 @@
     "build:esm": "rimraf es && cross-env BABEL_ENV=esm gulp build",
     "build:typed": "tsc --declaration --emitDeclarationOnly --noEmit false",
     "test": "mocha -r ts-node/register test/**/*.ts --timeout 300000",
+    "rune_test": "mocha -r ts-node/register test/rune/*.ts --timeout 300000",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@bitcoinerlab/secp256k1": "^1.0.5",
+    "@ethersproject/bignumber": "^5.7.0",
     "bignumber.js": "^9.1.2",
     "bip39": "^3.1.0",
     "bitcoinjs-lib": "^6.1.0",
     "bitcore-lib": "^10.0.0",
+    "btc-script-builder-thords": "^1.1.7",
     "ecpair": "^2.1.0",
     "hdkey": "^2.1.0",
     "tiny-secp256k1": "=2.2.1"
@@ -49,7 +52,7 @@
     "@babel/preset-typescript": "^7.16.5",
     "@types/chai": "^4.2.20",
     "@types/mocha": "^8.2.2",
-    "@types/node": "^16.11.10",
+    "@types/node": "^20.11.30",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
     "@typescript-eslint/parser": "^5.59.1",
     "babel-loader": "^8.2.3",
