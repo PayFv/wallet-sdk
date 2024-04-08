@@ -50,6 +50,7 @@ export var Flag = {
     return set;
   }
 };
+
 export function str_to_int(str) {
   var x = 0n;
   str.split('').forEach(function (c, i) {
@@ -93,7 +94,7 @@ export function format_rune_id(rune_id) {
   return new RuneId(height, index);
 }
 export function encode_to_vec(tag, values, payload) {
-  if (!values[0]) return [];
+  if (values[0] === null || typeof values[0] === 'undefined') return [];
   varint_encode(tag, payload);
   values.forEach(function (v) {
     varint_encode(v, payload);

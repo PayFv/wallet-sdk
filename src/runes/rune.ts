@@ -85,6 +85,23 @@ export const Flag = {
     }
 }
 
+
+// fn from_str(s: &str) -> Result<Self, Error> {
+//     let mut x = 0u128;
+//     for (i, c) in s.chars().enumerate() {
+//       if i > 0 {
+//         x += 1;
+//       }
+//       x = x.checked_mul(26).ok_or(Error::Range)?;
+//       match c {
+//         'A'..='Z' => {
+//           x = x.checked_add(c as u128 - 'A' as u128).ok_or(Error::Range)?;
+//         }
+//         _ => return Err(Error::Character(c)),
+//       }
+//     }
+//     Ok(Rune(x))
+//   }
 export function str_to_int(str: string): bigint {
 
     let x = 0n
@@ -150,7 +167,7 @@ export function format_rune_id(rune_id: bigint): RuneId {
 
 export function encode_to_vec(tag: bigint, values: Array<bigint>, payload: Array<number>): Array<number> {
 
-    if (!values[0]) return []
+    if (values[0] === null || typeof(values[0]) === 'undefined') return []
 
     varint_encode(tag, payload)
     values.forEach(v => {
@@ -280,6 +297,7 @@ export class Runestone implements RunestoneType {
             if (terms) {
                 flags = Flag.set(FLAGS.Terms, flags)
             }
+
             encode_to_vec(Tags.Flags, [flags], payload)
             encode_to_vec(Tags.Rune, [str_to_int(rune)], payload)
             encode_to_vec(Tags.Divisibility, [BigInt(divisibility || 0)], payload)
