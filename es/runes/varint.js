@@ -19,16 +19,18 @@ function int_to_buffer(value) {
 function encode_to_vec(value) {
   // if( typeof(value) !== 'bigint') value = BigInt(value)
   var buff = [];
-  buff.push(int_to_buffer(value).readUInt8(15) & 0x7F);
-  while (value > REST) {
-    value = (value >> 7n) - 1n;
+  while (value >> 7n > 0) {
     buff.push(int_to_buffer(value).readUInt8(15) | 0x80);
+    value >>= 7n;
   }
+  buff.push(int_to_buffer(value).readUInt8(15));
   return buff;
 }
 export function varint_encode(value, buff) {
   var new_buff = encode_to_vec(value);
+  console.log(value);
   new_buff.reverse().forEach(function (v, i) {
+    console.log(v);
     buff.push(v);
   });
 }
