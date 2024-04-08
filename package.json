@@ -1,5 +1,5 @@
 {
-  "name": "@unisat/wallet-sdk",
+  "name": "wallet-sdk-rune",
   "version": "1.4.1",
   "description": "UniSat Wallet SDK",
   "keywords": [
