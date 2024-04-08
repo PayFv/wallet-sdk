@@ -16,3 +16,5 @@ import * as _utils from "./utils";
 export { _utils as utils };
 import * as _wallet from "./wallet";
 export { _wallet as wallet };
+import * as _rune from "./runes";
+export { _rune as rune };
