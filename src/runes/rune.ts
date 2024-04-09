@@ -169,8 +169,8 @@ export function encode_to_vec(tag: bigint, values: Array<bigint>, payload: Array
 
     if (values[0] === null || typeof(values[0]) === 'undefined') return []
 
-    varint_encode(tag, payload)
     values.forEach(v => {
+        varint_encode(tag, payload)
         varint_encode(v, payload)
     })
 
@@ -320,8 +320,10 @@ export class Runestone implements RunestoneType {
         if (mint) {
             encode_to_vec(Tags.Mint, [mint.height, mint.index], payload)
         }
-
-        encode_to_vec(Tags.Pointer, [BigInt(pointer || 0)], payload)
+        
+        if( pointer ) {
+            encode_to_vec(Tags.Pointer, [BigInt(pointer || 0)], payload)
+        }
 
         if (cenotaph) {
             varint_encode(Tags.Cenotaph, payload)

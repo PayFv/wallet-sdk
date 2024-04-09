@@ -35,6 +35,7 @@ function encode_to_vec( value: bigint ): Array<number> {
 
 export function varint_encode( value: bigint, buff: Array<number> ) {
     const new_buff = encode_to_vec(value)
+    // console.log( value, new_buff)
     new_buff.forEach( (v,i) => {
         buff.push(v)
     })
